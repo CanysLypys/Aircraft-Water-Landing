@@ -1,9 +1,8 @@
-Citizen.CreateThread(function()
-
-    local ped = GetPlayerPed(-1)
+CreateThread(function()
+    local ped = PlayerPedId()
 
     while true do
-        Citizen.Wait(0)
+        Wait(0)
         if IsPedInAnyPlane(ped) then
             vehicle = GetVehiclePedIsIn(ped, false)
             if IsEntityInWater(vehicle) then
@@ -15,7 +14,7 @@ Citizen.CreateThread(function()
                 if not IsModelInCdimage(ModelHash) then return end
                 RequestModel(ModelHash)
                 while not HasModelLoaded(ModelHash) do
-                  Citizen.Wait(10)
+                  Wait(10)
                 end
 
                 floatvehicle = CreateVehicle(ModelHash, GetEntityCoords(vehicle), GetEntityHeading(ped), true, false)
@@ -27,11 +26,12 @@ Citizen.CreateThread(function()
 
                 SetEntityVisible(floatvehicle, false, 0)
                 SetEntityVisible(vehicle, true, 0)
-            end
+           end
+        else
+            Wait(500)
         end
         if not DoesEntityExist(vehicle) then
             DeleteEntity(floatvehicle)
         end
     end
-
 end)
