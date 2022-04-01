@@ -20,8 +20,8 @@ Citizen.CreateThread(function()
 
                 floatvehicle = CreateVehicle(ModelHash, GetEntityCoords(vehicle), GetEntityHeading(ped), true, false)
 
-                --SetEntityCollision(floatvehicle, false, true)
                 SetEntityCompletelyDisableCollision(floatvehicle, false, true)
+                SetVehicleEngineHealth(vehicle, 0.0)
 
                 AttachEntityToEntity(vehicle, floatvehicle, 0, 0, 0, 0, 0, 0, GetEntityHeading(ped), 0, false, true, false, 0, false)
 
